@@ -3,6 +3,8 @@ import sequelize from "../models/connect.js";
 import { Sequelize } from "sequelize";
 
 let model = initModels(sequelize)
+let Op = Sequelize.Op;
+
 
 export const likeRes = async (req,res) => {
     try {
@@ -23,6 +25,11 @@ export const likeRes = async (req,res) => {
 export const likeByRes = async (req,res) => {
     try {
         let data = await model.like_res.findAll({
+            where: {
+                res_id: {
+                    [Op.not]: null
+                }
+            },
             include: ["re"]
         })
         res.status(200).send(data)
@@ -34,6 +41,11 @@ export const likeByRes = async (req,res) => {
 export const likeByUser = async (req,res) => {
     try {
         let data = await model.like_res.findAll({
+            where: {
+                user_id: {
+                    [Op.not]: null
+                }
+            },
             include: ["user"]
         })
         res.status(200).send(data)
@@ -61,6 +73,11 @@ export const rateRes = async (req,res) => {
 export const rateByRes = async (req,res) => {
     try {
         let data = await model.rate_res.findAll({
+            where: {
+                res_id: {
+                    [Op.not]: null
+                }
+            },
             include: ["re"]
         })
         res.status(200).send(data)
@@ -72,6 +89,11 @@ export const rateByRes = async (req,res) => {
 export const rateByUser = async (req,res) => {
     try {
         let data = await model.rate_res.findAll({
+            where: {
+                user_id: {
+                    [Op.not]: null
+                }
+            },
             include: ["user"]
         })
         res.status(200).send(data)
