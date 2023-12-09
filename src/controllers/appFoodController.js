@@ -82,10 +82,10 @@ export const rateByUser = async (req,res) => {
 
 export const oderMon = async (req,res) => {
     try {
-        let { user_id } = req.params
+        let { userId } = req.params
         let { food_id, amount, code, arr_sub_id } = req.body;
         let newOder = {
-            user_id,
+            user_id: userId,
             food_id,
             amount,
             code,
